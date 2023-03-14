@@ -23,7 +23,16 @@ public class CustomerController {
     {
      return customerService.getCustomer(id);
     }
+//////////////////////////////////////////////////////////////////
 
+     @RequestMapping("/customers/active")
+    public List<Customer> getActive()
+    {
+        return customerService.getActiveStatus();
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
     @RequestMapping(method = RequestMethod.POST,value="/customer")
     public void addCustomer(@RequestBody Customer customer)
     {

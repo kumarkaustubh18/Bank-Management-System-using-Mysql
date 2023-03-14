@@ -52,11 +52,27 @@ public class CustomerService {
             }
         }
     }
+////////////////////////////////////////////////////////////////////////
+    public List<Customer> getActiveStatus() {
 
+
+        List<Customer> al = new ArrayList<>();
+        for (Customer customer : customers) {
+                if (customer.getStatus().equals("active")) {
+                    al.add(customer);
+            }
+        }
+        return al;
+    }
+
+
+    /////////////////////////////////////////////////////////////////
     public String acc()
     {
         Random rnd = new Random();
         int x = 10000000 + rnd.nextInt(90000000);
         return String.valueOf(x);
     }
+
+
 }
