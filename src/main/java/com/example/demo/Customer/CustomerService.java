@@ -67,6 +67,25 @@ public class CustomerService {
 
 
     /////////////////////////////////////////////////////////////////
+    public List<Customer> getInactiveStatus() {
+
+
+        List<Customer> al = new ArrayList<>();
+        for (Customer customer : customers) {
+            if (customer.getStatus().equals("inactive")) {
+                al.add(customer);
+            }
+        }
+        return al;
+    }
+
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////
     public String acc()
     {
         Random rnd = new Random();

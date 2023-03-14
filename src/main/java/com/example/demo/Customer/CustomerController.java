@@ -25,7 +25,7 @@ public class CustomerController {
     }
 //////////////////////////////////////////////////////////////////
 
-     @RequestMapping("/customers/active")
+     @RequestMapping("/customer/active")
     public List<Customer> getActive()
     {
         return customerService.getActiveStatus();
@@ -33,6 +33,17 @@ public class CustomerController {
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+@RequestMapping("/customer/inactive")
+public List<Customer> getInactive()
+{
+    return customerService.getInactiveStatus();
+}
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////
     @RequestMapping(method = RequestMethod.POST,value="/customer")
     public void addCustomer(@RequestBody Customer customer)
     {
