@@ -1,12 +1,22 @@
 package com.example.demo.Customer;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
 public class Customer {
 
-
+    @Column(name="customer_name")
     private String name;
+    @Id
     private String id;
+    @Column
     private int age;
 
+    @Column
     private String status;
 
     public Customer() {
