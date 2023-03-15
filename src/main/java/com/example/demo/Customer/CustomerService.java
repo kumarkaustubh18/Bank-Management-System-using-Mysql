@@ -1,91 +1,43 @@
 package com.example.demo.Customer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class CustomerService {
 
-  private  List<Customer> customers= new ArrayList<>(Arrays.asList(
-            new Customer("ankit",acc(),18,"active"),
-            new Customer("amit",acc(),21,"active"),
-            new Customer("aman",acc(),24,"active")
-    ));
-
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public  List<Customer> getAllCustomer() {
-        return customers;
+        //return customers;
+     List<Customer>customer=new ArrayList<>();
+
+        customerRepository.findAll().forEach(customer::add);
+        return customer;
     }
-    public Customer  getCustomer(String id)
+    public Optional<Customer> getCustomer(String id)
     {
-       return customers.stream().filter(t->t.getId().equals(id)).findFirst().get();
+      // return customers.stream().filter(t->t.getId().equals(id)).findFirst().get();
+     return customerRepository.findById(id);
     }
 
 
     public void addCustomer(Customer customer) {
-     customers.add(customer);
+        //customers.add(customer);
+         customerRepository.save(customer);
     }
 
     public void updateCustomer(String id,Customer customer) {
-        for(int i=0;i<customers.size();i++)
-        {
-            Customer c=customers.get(i);
-            if(c.getId().equals(id)) {
-                customers.set(i, customer);
-                return;
-            }
-
-        }
+        customerRepository.save(customer);
     }
 
     public void deleteCustomer(String id) {
 
-        for(Customer customer : customers){
-            if(customer.getId().equals(id)){
-                if(customer.getStatus().equals("inactive")){
-                    customers.remove(customer);
-                }
-            }
-        }
+        customerRepository.deleteById(id);
     }
-////////////////////////////////////////////////////////////////////////
-    public List<Customer> getActiveStatus() {
-
-
-        List<Customer> al = new ArrayList<>();
-        for (Customer customer : customers) {
-                if (customer.getStatus().equals("active")) {
-                    al.add(customer);
-            }
-        }
-        return al;
-    }
-
-
-    /////////////////////////////////////////////////////////////////
-    public List<Customer> getInactiveStatus() {
-
-
-        List<Customer> al = new ArrayList<>();
-        for (Customer customer : customers) {
-            if (customer.getStatus().equals("inactive")) {
-                al.add(customer);
-            }
-        }
-        return al;
-    }
-
-
-
-
-
-
-
-    /////////////////////////////////////////////////////////////
     public String acc()
     {
         Random rnd = new Random();

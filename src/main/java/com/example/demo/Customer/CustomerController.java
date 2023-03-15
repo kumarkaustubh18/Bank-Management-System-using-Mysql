@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CustomerController {
@@ -19,31 +20,11 @@ public class CustomerController {
     }
 
     @RequestMapping("/customer/{id}")
-    public Customer getCustomer(@PathVariable String id)
+    public Optional<Customer> getCustomer(@PathVariable String id)
     {
      return customerService.getCustomer(id);
     }
-//////////////////////////////////////////////////////////////////
 
-     @RequestMapping("/customer/active")
-    public List<Customer> getActive()
-    {
-        return customerService.getActiveStatus();
-    }
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-@RequestMapping("/customer/inactive")
-public List<Customer> getInactive()
-{
-    return customerService.getInactiveStatus();
-}
-
-
-
-
-
-    /////////////////////////////////////////////////////////////////////////////////
     @RequestMapping(method = RequestMethod.POST,value="/customer")
     public void addCustomer(@RequestBody Customer customer)
     {
