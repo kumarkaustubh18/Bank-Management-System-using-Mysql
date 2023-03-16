@@ -3,7 +3,6 @@ package com.example.demo.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +40,17 @@ public class CustomerController {
     {
          customerService.deleteCustomer(id);
     }
+    ///////////////////////////////////////////////////////////////////
+    @RequestMapping("/customer/active")
+    public List<Customer> getActiveCustomer()
+    {
+        return customerService.getActiveCustomer();
+    }
+    @RequestMapping("/customer/inactive")
+    public List<Customer> getInactiveCustomer()
+    {
+        return customerService.getInactiveCustomer();
+    }
+
 }
 

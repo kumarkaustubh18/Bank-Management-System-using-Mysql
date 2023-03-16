@@ -38,11 +38,21 @@ public class CustomerService {
 
         customerRepository.deleteById(id);
     }
-    public String acc()
+    ///////////////////////////////////////////////////////
+    public List<Customer> getActiveCustomer()
     {
-        Random rnd = new Random();
-        int x = 10000000 + rnd.nextInt(90000000);
-        return String.valueOf(x);
+
+        List<Customer> id=customerRepository.getActiveCustomer();
+
+        return  id;
+    }
+
+    public List<Customer> getInactiveCustomer()
+    {
+
+        List<Customer> id=customerRepository.getInactiveCustomer();
+
+        return  id;
     }
 
 
